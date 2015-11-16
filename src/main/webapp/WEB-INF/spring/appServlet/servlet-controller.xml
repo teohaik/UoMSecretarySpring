@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<beans:import resource="spring-database.xml" />
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+	<beans:bean id="lessonDAO" class="gr.uom.UoMSecretarySpring.dao.impl.LessonDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory"></beans:property>
+	</beans:bean>
+	<beans:bean id="lessonService"
+		class="gr.uom.UoMSecretarySpring.service.impl.LessonServiceImpl">
+		<beans:property name="lessonDao" ref="lessonDAO" />
+	</beans:bean>
+
+	<beans:bean id="userDao" class="gr.uom.UoMSecretarySpring.dao.impl.UserDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="userService"
+		class="gr.uom.UoMSecretarySpring.service.impl.UserServiceImpl">
+		<beans:property name="userDao" ref="userDao" />
+	</beans:bean>
+
+	<beans:bean id="userDetailsDao"
+		class="gr.uom.UoMSecretarySpring.dao.impl.UserDetailsDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="userDetailsService"
+		class="gr.uom.UoMSecretarySpring.service.impl.UserDetailsServiceImpl">
+		<beans:property name="userDetailsDao" ref="userDetailsDao" />
+	</beans:bean>
+
+	<beans:bean id="professorTeachesLessonsDao"
+		class="gr.uom.UoMSecretarySpring.dao.impl.ProfessorTeachesLessonsDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="professorTeachesLessonsService"
+		class="gr.uom.UoMSecretarySpring.service.impl.ProfessorTeachesLessonsServiceImpl">
+		<beans:property name="professorTeachesLessonsDao" ref="professorTeachesLessonsDao" />
+	</beans:bean>
+
+	<beans:bean id="studentEnrolledToLessonDao"
+		class="gr.uom.UoMSecretarySpring.dao.impl.StudentEnrolledToLessonDaoImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="studentEnrolledToLessonService"
+		class="gr.uom.UoMSecretarySpring.service.impl.StudentEnrolledToLessonServiceImpl">
+		<beans:property name="studentEnrolledToLessonDao" ref="studentEnrolledToLessonDao" />
+	</beans:bean>
+
+</beans:beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://195.251.210.166:3306/spring" />
+		<property name="username" value="georgiosdigkas" />
+		<property name="password" value="se.uom.gr" />
+	</bean>
+
+	<bean id="hibernate5AnnotatedSessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>gr.uom.UoMSecretarySpring.domain.Lesson</value>
+				<value>gr.uom.UoMSecretarySpring.domain.User</value>
+				<value>gr.uom.UoMSecretarySpring.domain.UserDetails</value>
+				<value>gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessons</value>
+				<value>gr.uom.UoMSecretarySpring.domain.StudentEnrolledToLesson</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
+				<!-- <prop key="hibernate.use_sql_comments">true</prop> -->
+				<!-- <prop key="hibernate.connection.autocommit">true</prop> -->
+				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
+			</props>
+		</property>
+	</bean>
+
+</beans>

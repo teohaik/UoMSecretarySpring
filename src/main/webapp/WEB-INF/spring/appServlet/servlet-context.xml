@@ -23,6 +23,8 @@
 	
 	<context:component-scan base-package="gr.uom.UoMSecretarySpring" />
 	
-	
+	<!-- imports -->
+	<beans:import resource="servlet-controller.xml" />
+	<beans:import resource="spring-transaction.xml" />
 	
 </beans:beans>
