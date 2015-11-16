@@ -39,7 +39,6 @@ import gr.uom.UoMSecretarySpring.service.UserService;
 public class ProfessorController {
 
 	private UserDetailsService userDetailsService;
-	private UserService userService;
 	private LessonService lessonService;
 	private StudentEnrolledToLessonService studentEnrolledToLessonService; 
 
@@ -51,10 +50,6 @@ public class ProfessorController {
 	@Autowired(required=true)
 	public void setUserDetailsService(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
-	}
-	@Autowired(required=true)
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 
 	@Autowired(required=true)
