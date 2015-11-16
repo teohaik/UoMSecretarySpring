@@ -7,6 +7,8 @@ package gr.uom.UoMSecretarySpring.domain;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -55,7 +58,9 @@ public class User implements Serializable {
     private UserDetails userDetails;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<ProfessorTeachesLessons> professorTeachesLessonsCollection;
-
+	@Transient
+	private List<Integer> checkedLessons;
+	
     public User() {
     }
 
@@ -119,7 +124,15 @@ public class User implements Serializable {
         this.userDetails = userDetails;
     }
 
-    @XmlTransient
+    public List<Integer> getCheckedLessons() {
+		return checkedLessons;
+	}
+
+	public void setCheckedLessons(List<Integer> checkedLessons) {
+		this.checkedLessons = checkedLessons;
+	}
+
+	@XmlTransient
     public Collection<ProfessorTeachesLessons> getProfessorTeachesLessonsCollection() {
         return professorTeachesLessonsCollection;
     }
