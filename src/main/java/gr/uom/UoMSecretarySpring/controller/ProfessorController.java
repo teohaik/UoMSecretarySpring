@@ -28,7 +28,6 @@ import gr.uom.UoMSecretarySpring.domain.wrapper.StudentEnrolledToLessonWrapper;
 import gr.uom.UoMSecretarySpring.service.LessonService;
 import gr.uom.UoMSecretarySpring.service.StudentEnrolledToLessonService;
 import gr.uom.UoMSecretarySpring.service.UserDetailsService;
-import gr.uom.UoMSecretarySpring.service.UserService;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>
