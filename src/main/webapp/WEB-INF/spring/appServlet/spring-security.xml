@@ -6,6 +6,7 @@
 	<!-- enable use-expressions -->
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/myAccount" access="isAuthenticated()" />
+		<intercept-url pattern="/secretary/**" access="hasRole('ROLE_SECRETARY')" />
 
 		<form-login />
 		<logout logout-success-url="/" delete-cookies="JSESSIONID" />
