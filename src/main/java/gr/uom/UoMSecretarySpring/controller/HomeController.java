@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import gr.uom.UoMSecretarySpring.service.LessonService;
 import gr.uom.UoMSecretarySpring.service.UserDetailsService;
-import gr.uom.UoMSecretarySpring.service.UserService;
-
 /**
  * Handles requests for the application home page.
  */
