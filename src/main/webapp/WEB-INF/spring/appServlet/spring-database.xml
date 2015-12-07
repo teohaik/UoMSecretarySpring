@@ -3,12 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath:jdbc.properties" />
+	</bean>
+
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://195.251.210.166:3306/spring" />
-		<property name="username" value="georgiosdigkas" />
-		<property name="password" value="se.uom.gr" />
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
 	<bean id="hibernate5AnnotatedSessionFactory"
@@ -19,8 +24,10 @@
 				<value>gr.uom.UoMSecretarySpring.domain.Lesson</value>
 				<value>gr.uom.UoMSecretarySpring.domain.User</value>
 				<value>gr.uom.UoMSecretarySpring.domain.UserDetails</value>
-				<value>gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessons</value>
-				<value>gr.uom.UoMSecretarySpring.domain.StudentEnrolledToLesson</value>
+				<value>gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessons
+				</value>
+				<value>gr.uom.UoMSecretarySpring.domain.StudentEnrolledToLesson
+				</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
