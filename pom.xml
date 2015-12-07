@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>4.2.2.RELEASE</org.springframework-version>
+		<org.springframework-version>4.2.3.RELEASE</org.springframework-version>
 		<org.springframework.webflow-version>2.4.2.RELEASE</org.springframework.webflow-version>
 		<org.springframework.security-version>4.0.3.RELEASE</org.springframework.security-version>
 		<org.aspectj-version>1.7.4</org.aspectj-version>
@@ -18,12 +18,24 @@
 		<mysql-verion>5.1.37</mysql-verion>
 		<commons-dbcp-verion>1.4</commons-dbcp-verion>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${org.springframework-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-version}</version>
 			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
@@ -35,7 +47,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- Spring Faces -->
@@ -49,21 +60,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- Spring ORM support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- Spring JDBC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- Spring Security -->
