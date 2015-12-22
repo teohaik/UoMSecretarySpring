@@ -21,6 +21,7 @@ import gr.uom.UoMSecretarySpring.service.UserDetailsService;
 @Controller
 public class HomeController {
 
+	private static final String CONTAINER_TITLE = "containerTitle";
 	@Autowired private LessonService lessonService;
 	@Autowired private UserDetailsService userDetailsService;
 	
@@ -34,21 +35,21 @@ public class HomeController {
 
 	@RequestMapping(value = "/lessons", method = RequestMethod.GET)
 	public String listLessons(Model model) {
-		model.addAttribute("containerTitle", "Lessons");
+		model.addAttribute(CONTAINER_TITLE, "Lessons");
 		model.addAttribute("lessons", lessonService.findAll());
 		return "listLessons";
 	}
 
 	@RequestMapping(value = "/professors", method = RequestMethod.GET)
 	public String listProfessors(Model model) {
-		model.addAttribute("containerTitle", "Professors");
+		model.addAttribute(CONTAINER_TITLE, "Professors");
 		model.addAttribute("professors", userDetailsService.findByRole("ROLE_PROFESSOR"));
 		return "listProfessors";
 	}
 
 	@RequestMapping(value = "/secretaries", method = RequestMethod.GET)
 	public String listSecretaries(Model model) {
-		model.addAttribute("containerTitle", "Secretaries");
+		model.addAttribute(CONTAINER_TITLE, "Secretaries");
 		model.addAttribute("secretaries", userDetailsService.findByRole("ROLE_SECRETARY"));
 		return "listSecretaries";
 	}

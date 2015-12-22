@@ -48,8 +48,7 @@ public class UserDetailsDaoImpl implements UserDetailsDao {
 	public List<UserDetails> findAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.getNamedQuery("UserDetails.findAll");
-		List<UserDetails> userDetails = query.list();
-		return userDetails;
+		return (List<UserDetails>) query.list();
 	}
 
 	@Override

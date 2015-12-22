@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gr.uom.UoMSecretarySpring.controller;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +10,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,6 +33,9 @@ import gr.uom.UoMSecretarySpring.service.UserDetailsService;
 @RequestMapping(value = "/professor")
 public class ProfessorController {
 
+	private static final String CONTAINER_TITLE = "containerTitle";
+	private static final String PROFESSOR_DETAILS = "professorDetails";
+	private static final String PROFESSOR = "professor";
 	private UserDetailsService userDetailsService;
 	private LessonService lessonService;
 	private StudentEnrolledToLessonService studentEnrolledToLessonService; 
@@ -73,8 +72,8 @@ public class ProfessorController {
 	public String professorHome(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDetails userDetails = userDetailsService.findByUsername(username);
-		model.addAttribute("professor", userDetails);
-		model.addAttribute("containerTitle", userDetails.getName() + " " + userDetails.getSurname() + "'s admin panel");
+		model.addAttribute(PROFESSOR, userDetails);
+		model.addAttribute(CONTAINER_TITLE, userDetails.getName() + " " + userDetails.getSurname() + "'s admin panel");
 		return "professor/home";
 	}
 
@@ -82,7 +81,7 @@ public class ProfessorController {
 	public String editUserDetails(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("userDetails", userDetailsService.findByUsername(username));
-		model.addAttribute("containerTitle", "Edit your personal info");
+		model.addAttribute(CONTAINER_TITLE, "Edit your personal info");
 		return "professor/edit";
 	}
 
@@ -91,7 +90,7 @@ public class ProfessorController {
 		ModelAndView modelAndView = new ModelAndView("professor/home");
 		userDetailsService.update(userDetails);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		modelAndView.addObject("professor", userDetailsService.findByUsername(username));
+		modelAndView.addObject(PROFESSOR, userDetailsService.findByUsername(username));
 		return modelAndView;
 	}
 
@@ -100,9 +99,9 @@ public class ProfessorController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDetails professorDetails = userDetailsService.findByUsername(username);
 		model.addAttribute("lessons", lessonService.findByTeachProfessor(username));
-		model.addAttribute("professorDetails", professorDetails);
-		model.addAttribute("professor", professorDetails.getUser());
-		model.addAttribute("containerTitle", "Professor's: " + professorDetails.getName() + " " + professorDetails.getSurname() + " lessons");
+		model.addAttribute(PROFESSOR_DETAILS, professorDetails);
+		model.addAttribute(PROFESSOR, professorDetails.getUser());
+		model.addAttribute(CONTAINER_TITLE, "Professor's: " + professorDetails.getName() + " " + professorDetails.getSurname() + " lessons");
 		return "professor/myLessons";
 	}
 
@@ -116,10 +115,10 @@ public class ProfessorController {
 			StudentEnrolledToLessonWrapper studentEnrolledToLessonWrapper = new StudentEnrolledToLessonWrapper();
 			studentEnrolledToLessonWrapper.setStudentsEnrolledToLessonList(students);
 
-			model.addAttribute("containerTitle", "Set grades to students");
+			model.addAttribute(CONTAINER_TITLE, "Set grades to students");
 			model.addAttribute("studentEnrolledToLessonWrapper", studentEnrolledToLessonWrapper);
-			model.addAttribute("professorDetails", professorDetails);
-			model.addAttribute("professor", professorDetails.getUser());
+			model.addAttribute(PROFESSOR_DETAILS, professorDetails);
+			model.addAttribute(PROFESSOR, professorDetails.getUser());
 			return "professor/setGrades";
 		}
 		return "professor/noStudents";
@@ -146,8 +145,8 @@ public class ProfessorController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDetails professorDetails = userDetailsService.findByUsername(username);
 		modelAndView.addObject("lessons", lessonService.findByTeachProfessor(username));
-		modelAndView.addObject("professorDetails", professorDetails);
-		modelAndView.addObject("professor", professorDetails.getUser());
+		modelAndView.addObject(PROFESSOR_DETAILS, professorDetails);
+		modelAndView.addObject(PROFESSOR, professorDetails.getUser());
 		return modelAndView;
 	}
 

@@ -1,12 +1,8 @@
-/**
- * 
- */
 package gr.uom.UoMSecretarySpring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +20,8 @@ import gr.uom.UoMSecretarySpring.service.LessonService;
 @RequestMapping("/secretary/lessons")
 public class SecretaryLessonsController {
 
+	private static final String LESSONS = "lessons";
+	private static final String SECRETARY_LIST_LESSONS = "secretary/listLessons";
 	private LessonService lessonService;
 
 	@Autowired(required=true)
@@ -33,9 +31,9 @@ public class SecretaryLessonsController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listLessons(Model model) {
-		model.addAttribute("lessons", lessonService.findAll());
+		model.addAttribute(LESSONS, lessonService.findAll());
 		model.addAttribute("containerTitle", "University of Macedonia Lessons");
-		return "secretary/listLessons";
+		return SECRETARY_LIST_LESSONS;
 	}
 
 	@RequestMapping(value = {"insert"}, method = RequestMethod.GET)
@@ -48,8 +46,8 @@ public class SecretaryLessonsController {
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public ModelAndView storeLesson(@ModelAttribute("lesson") Lesson lesson) {
 		lessonService.insert(lesson);
-		ModelAndView model = new ModelAndView("secretary/listLessons");
-		model.addObject("lessons", lessonService.findAll());
+		ModelAndView model = new ModelAndView(SECRETARY_LIST_LESSONS);
+		model.addObject(LESSONS, lessonService.findAll());
 		return model;
 	}
 
@@ -62,15 +60,15 @@ public class SecretaryLessonsController {
 	@RequestMapping(value="edit", method=RequestMethod.POST)
 	public ModelAndView storeEditedLesson(@ModelAttribute("lesson") Lesson lesson) {
 		lessonService.update(lesson);
-		ModelAndView model = new ModelAndView("secretary/listLessons");
-		model.addObject("lessons", lessonService.findAll());
+		ModelAndView model = new ModelAndView(SECRETARY_LIST_LESSONS);
+		model.addObject(LESSONS, lessonService.findAll());
 		return model;
 	}
 
 	@RequestMapping(value = {"delete/{id}"}, method = RequestMethod.GET)
 	public String deleteLesson(@PathVariable(value="id") Integer id, Model model) {
 		lessonService.delete(lessonService.findById(id));
-		model.addAttribute("lessons", lessonService.findAll());
-		return "secretary/listLessons";
+		model.addAttribute(LESSONS, lessonService.findAll());
+		return SECRETARY_LIST_LESSONS;
 	}
 }

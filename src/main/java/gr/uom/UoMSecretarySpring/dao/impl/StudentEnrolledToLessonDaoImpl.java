@@ -69,8 +69,7 @@ public class StudentEnrolledToLessonDaoImpl implements StudentEnrolledToLessonDa
 	public List<StudentEnrolledToLesson> findByStudent(String student) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("StudentEnrolledToLesson.findByStudent");
 		query.setString("student", student);
-		List<StudentEnrolledToLesson> studentEnrolledToLessons = query.list();
-		return studentEnrolledToLessons;
+		return query.list();
 	}
 
 	@Override
@@ -85,8 +84,7 @@ public class StudentEnrolledToLessonDaoImpl implements StudentEnrolledToLessonDa
 	public List<StudentEnrolledToLesson> findByLessonId(int lessonId) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("StudentEnrolledToLesson.findByLessonId");
 		query.setInteger("lessonId", lessonId);
-		List<StudentEnrolledToLesson> StudentEnrolledToLessonList = query.list();
-		return StudentEnrolledToLessonList;
+		return query.list();
 	}
 
 	private boolean checkIfExists(StudentEnrolledToLesson studentEnrolledToLessons) {

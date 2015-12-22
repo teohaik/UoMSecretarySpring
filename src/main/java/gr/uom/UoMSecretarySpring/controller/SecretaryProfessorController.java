@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gr.uom.UoMSecretarySpring.controller;
 
 import java.util.ArrayList;
@@ -10,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +31,12 @@ import gr.uom.UoMSecretarySpring.service.UserService;
 @RequestMapping("/secretary/professors")
 public class SecretaryProfessorController {
 
+	private static final String PROFESSOR = "professor";
+	private static final String PROFESSOR_DETAILS = "professorDetails";
+	private static final String PROFESSORS = "professors";
+	private static final String SECRETARY_PROFESSORS = "secretary/professors";
+	private static final String LESSONS = "lessons";
+	private static final String ROLE_PROFESSOR = "ROLE_PROFESSOR";
 	private UserDetailsService userDetailsService;
 	private UserService userService;
 	private LessonService lessonService;
@@ -61,22 +63,22 @@ public class SecretaryProfessorController {
 
 	@RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
 	public String secretaryProfessorsHome(Model model) {
-		model.addAttribute("professors", userDetailsService.findByRole("ROLE_PROFESSOR"));
-		return "secretary/professors";
+		model.addAttribute(PROFESSORS, userDetailsService.findByRole(ROLE_PROFESSOR));
+		return SECRETARY_PROFESSORS;
 	}
 
 	@RequestMapping(value = "/assign/{username}", method = RequestMethod.GET)
 	public String assignLessons(@PathVariable(value="username") String username, Model model) {
 		UserDetails professorDetails = userDetailsService.findByUsername(username);
-		model.addAttribute("lessons", lessonService.findByNotTeachProfessor(username));
-		model.addAttribute("professorDetails", professorDetails);
-		model.addAttribute("professor", professorDetails.getUser());
+		model.addAttribute(LESSONS, lessonService.findByNotTeachProfessor(username));
+		model.addAttribute(PROFESSOR_DETAILS, professorDetails);
+		model.addAttribute(PROFESSOR, professorDetails.getUser());
 		model.addAttribute("containerTitle", "Assign Lessons to Proffesor: " + professorDetails.getName() + " " + professorDetails.getSurname());
 		return "secretary/assignLessons";
 	}
 
 	@RequestMapping(value="/assign/{username}", method=RequestMethod.POST)
-	public ModelAndView storeAssignedLessons(@PathVariable(value="username") String username, @ModelAttribute("professor") User professor) {
+	public ModelAndView storeAssignedLessons(@PathVariable(value="username") String username, @ModelAttribute(PROFESSOR) User professor) {
 
 		List<ProfessorTeachesLessons> professorTeachesLessonsList = new ArrayList<>();
 		List<Integer> checkedLessons = professor.getCheckedLessons();
@@ -94,23 +96,23 @@ public class SecretaryProfessorController {
 		}
 
 		professorTeachesLessonsService.insert(professorTeachesLessonsList);
-		ModelAndView model = new ModelAndView("secretary/professors");
-		model.addObject("professors", userDetailsService.findByRole("ROLE_PROFESSOR"));
+		ModelAndView model = new ModelAndView(SECRETARY_PROFESSORS);
+		model.addObject(PROFESSORS, userDetailsService.findByRole(ROLE_PROFESSOR));
 		return model;
 	}
 
 	@RequestMapping(value = "/revoke/{username}", method = RequestMethod.GET)
 	public String revokeLessons(@PathVariable(value="username") String username, Model model) {
 		UserDetails professorDetails = userDetailsService.findByUsername(username);
-		model.addAttribute("lessons", lessonService.findByTeachProfessor(username));
-		model.addAttribute("professorDetails", professorDetails);
-		model.addAttribute("professor", professorDetails.getUser());
+		model.addAttribute(LESSONS, lessonService.findByTeachProfessor(username));
+		model.addAttribute(PROFESSOR_DETAILS, professorDetails);
+		model.addAttribute(PROFESSOR, professorDetails.getUser());
 		model.addAttribute("containerTitle", "Revoke Lessons from Proffesor: " + professorDetails.getName() + " " + professorDetails.getSurname()); 
 		return "secretary/revokeLessons";
 	}
 
 	@RequestMapping(value="/revoke/{username}", method=RequestMethod.POST)
-	public ModelAndView storeRevokedLessons(@PathVariable(value="username") String username, @ModelAttribute("professor") User professor) {
+	public ModelAndView storeRevokedLessons(@PathVariable(value="username") String username, @ModelAttribute(PROFESSOR) User professor) {
 
 		List<ProfessorTeachesLessons> professorTeachesLessonsList = new ArrayList<>();
 		List<Integer> checkedLessons = professor.getCheckedLessons();
@@ -120,17 +122,17 @@ public class SecretaryProfessorController {
 			professorTeachesLessonsList.add(professorTeachesLessonsService.findByProfessorAndLessonId(username, lesson.getId()));
 
 		professorTeachesLessonsService.delete(professorTeachesLessonsList);
-		ModelAndView model = new ModelAndView("secretary/professors");
-		model.addObject("professors", userDetailsService.findByRole("ROLE_PROFESSOR"));
+		ModelAndView model = new ModelAndView(SECRETARY_PROFESSORS);
+		model.addObject(PROFESSORS, userDetailsService.findByRole(ROLE_PROFESSOR));
 		return model;
 	}
 
 	@RequestMapping(value = "/professorsLessons/{username}", method = RequestMethod.GET)
 	public String professorsLessons(@PathVariable(value="username") String username, Model model) {
 		UserDetails professorDetails = userDetailsService.findByUsername(username);
-		model.addAttribute("lessons", lessonService.findByTeachProfessor(username));
-		model.addAttribute("professorDetails", professorDetails);
-		model.addAttribute("professor", professorDetails.getUser());
+		model.addAttribute(LESSONS, lessonService.findByTeachProfessor(username));
+		model.addAttribute(PROFESSOR_DETAILS, professorDetails);
+		model.addAttribute(PROFESSOR, professorDetails.getUser());
 		return "secretary/professorsLessons";
 	}
 

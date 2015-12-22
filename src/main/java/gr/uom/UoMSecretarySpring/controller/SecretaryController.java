@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gr.uom.UoMSecretarySpring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;

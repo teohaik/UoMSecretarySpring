@@ -60,48 +60,42 @@ public class LessonDaoImpl implements LessonDao {
 	@Override
 	public List<Lesson> findAll() {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("Lesson.findAll");
-		List<Lesson> lessons = query.list();
-		return lessons;
+		return (List<Lesson>) query.list();
 	}
 
 	@Override
 	public List<Lesson> findByIds(List<Integer> ids) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("Lesson.findByIds");
 		query.setParameterList("ids", ids);
-		List<Lesson> lessons = query.list();
-		return lessons;
+		return (List<Lesson>) query.list();
 	}
 
 	@Override
 	public List<Lesson> findByNotEnrolledStudent(String student) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("Lesson.findByNotEnrolledStudent");
 		query.setString("student", student);
-		List<Lesson> lessons = query.list();
-		return lessons;
+		return (List<Lesson>) query.list();
 	}
 
 	@Override
 	public List<Lesson> findByEnrolledStudent(String student) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("Lesson.findByEnrolledStudent");
 		query.setString("student", student);
-		List<Lesson> lessons = query.list();
-		return lessons;
+		return (List<Lesson>) query.list();
 	}
 
 	@Override
 	public List<Lesson> findByNotTeachProfessor(String professor) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("Lesson.findByNotTeachProfessor");
 		query.setString("professor", professor);
-		List<Lesson> lessons = query.list();
-		return lessons;
+		return (List<Lesson>) query.list();
 	}
 
 	@Override
 	public List<Lesson> findByTeachProfessor(String professor) {
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("Lesson.findByTeachProfessor");
 		query.setString("professor", professor);
-		List<Lesson> lessons = query.list();
-		return lessons;
+		return (List<Lesson>) query.list();
 	}
 
 }

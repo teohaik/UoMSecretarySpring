@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gr.uom.UoMSecretarySpring.controller;
 
 import java.text.SimpleDateFormat;
@@ -10,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +29,8 @@ import gr.uom.UoMSecretarySpring.service.UserService;
 @RequestMapping("/secretary/users")
 public class SecretaryUsersController {
 
+	private static final String USERS_DETAILS = "usersDetails";
+	private static final String SECRETARY_LIST_USERS_DETAILS = "secretary/listUsersDetails";
 	private UserDetailsService userDetailsService;
 	private UserService userService;
 
@@ -59,8 +57,8 @@ public class SecretaryUsersController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listUsers(Model model) {
-		model.addAttribute("usersDetails", userDetailsService.findAll());
-		return "secretary/listUsersDetails";
+		model.addAttribute(USERS_DETAILS, userDetailsService.findAll());
+		return SECRETARY_LIST_USERS_DETAILS;
 	}
 
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
@@ -97,8 +95,8 @@ public class SecretaryUsersController {
 		userDetails.setUsername(username);
 		userDetailsService.insert(userDetails);
 
-		ModelAndView model = new ModelAndView("secretary/listUsersDetails");
-		model.addObject("usersDetails", userDetailsService.findAll());
+		ModelAndView model = new ModelAndView(SECRETARY_LIST_USERS_DETAILS);
+		model.addObject(USERS_DETAILS, userDetailsService.findAll());
 		return model;
 	}
 
@@ -111,8 +109,8 @@ public class SecretaryUsersController {
 	@RequestMapping(value="edit", method=RequestMethod.POST)
 	public ModelAndView storeEditedUserDetails(@ModelAttribute("userDetails") UserDetails userDetails) {
 		userDetailsService.update(userDetails);
-		ModelAndView model = new ModelAndView("secretary/listUsersDetails");
-		model.addObject("usersDetails", userDetailsService.findAll());
+		ModelAndView model = new ModelAndView(SECRETARY_LIST_USERS_DETAILS);
+		model.addObject(USERS_DETAILS, userDetailsService.findAll());
 		return model;
 	}
 
@@ -120,8 +118,8 @@ public class SecretaryUsersController {
 	public String deleteLesson(@PathVariable(value="username") String username, Model model) {
 		userDetailsService.delete(userDetailsService.findByUsername(username));
 		userService.delete(userService.findByUsername(username));
-		model.addAttribute("usersDetails", userDetailsService.findAll());
-		return "secretary/listUsersDetails";
+		model.addAttribute(USERS_DETAILS, userDetailsService.findAll());
+		return SECRETARY_LIST_USERS_DETAILS;
 	}
 
 }

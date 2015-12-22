@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gr.uom.UoMSecretarySpring.controller;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +10,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,6 +35,11 @@ import gr.uom.UoMSecretarySpring.service.UserService;
 @RequestMapping(value = "/student")
 public class StudentController {
 
+	private static final String CONTAINER_TITLE = "containerTitle";
+	private static final String LESSONS = "lessons";
+	private static final String STUDENT = "student";
+	private static final String ADMINS_PANEL = "'s admin panel";
+	private static final String STUDENT_HOME = "student/home";
 	private UserService userService;
 	private UserDetailsService userDetailsService;
 	private StudentEnrolledToLessonService studentEnrolledToLessonService;
@@ -72,16 +73,16 @@ public class StudentController {
 	public String studentHome(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDetails userDetails = userDetailsService.findByUsername(username);
-		model.addAttribute("containerTitle", userDetails.getName() + " " + userDetails.getSurname() + "'s admin panel");
-		model.addAttribute("student", userDetails);
-		return "student/home";
+		model.addAttribute(CONTAINER_TITLE, userDetails.getName() + " " + userDetails.getSurname() + ADMINS_PANEL);
+		model.addAttribute(STUDENT, userDetails);
+		return STUDENT_HOME;
 	}
 
 	@RequestMapping(value = "/myLessons", method = RequestMethod.GET)
 	public String myLessons(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.addAttribute("lessons", studentEnrolledToLessonService.findByStudent(username));
-		model.addAttribute("containerTitle", "My enrolled Lessons");
+		model.addAttribute(LESSONS, studentEnrolledToLessonService.findByStudent(username));
+		model.addAttribute(CONTAINER_TITLE, "My enrolled Lessons");
 		return "student/myLessons";
 	}
 
@@ -94,26 +95,26 @@ public class StudentController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails) {
-		ModelAndView modelAndView = new ModelAndView("student/home");
+		ModelAndView modelAndView = new ModelAndView(STUDENT_HOME);
 		userDetailsService.update(userDetails);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDetails updatedUserDetails = userDetailsService.findByUsername(username);
-		modelAndView.addObject("containerTitle", updatedUserDetails.getName() + " " + updatedUserDetails.getSurname() + "'s admin panel");
-		modelAndView.addObject("student", updatedUserDetails);
+		modelAndView.addObject(CONTAINER_TITLE, updatedUserDetails.getName() + " " + updatedUserDetails.getSurname() + ADMINS_PANEL);
+		modelAndView.addObject(STUDENT, updatedUserDetails);
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/enroll", method = RequestMethod.GET)
 	public String enrollToLessons(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.addAttribute("containerTitle", "Choose the lessons that you would like to enroll");
-		model.addAttribute("student", userService.findByUsername(username));
-		model.addAttribute("lessons", lessonService.findByNotEnrolledStudent(username));
+		model.addAttribute(CONTAINER_TITLE, "Choose the lessons that you would like to enroll");
+		model.addAttribute(STUDENT, userService.findByUsername(username));
+		model.addAttribute(LESSONS, lessonService.findByNotEnrolledStudent(username));
 		return "student/enrollToLessons";
 	}
 
 	@RequestMapping(value="/enroll", method=RequestMethod.POST)
-	public ModelAndView storeEnrollToLessons(@ModelAttribute("student") User student) {
+	public ModelAndView storeEnrollToLessons(@ModelAttribute(STUDENT) User student) {
 		List<StudentEnrolledToLesson> studentEnrolledToLessonsList = new ArrayList<>();
 
 		List<Integer> checkedLessons = student.getCheckedLessons();
@@ -133,9 +134,9 @@ public class StudentController {
 
 		studentEnrolledToLessonService.insert(studentEnrolledToLessonsList);
 
-		ModelAndView model = new ModelAndView("student/home");
-		model.addObject("containerTitle", user.getUserDetails().getName() + " " + user.getUserDetails().getSurname() + "'s admin panel");
-		model.addObject("student", userDetailsService.findByUsername(username));
+		ModelAndView model = new ModelAndView(STUDENT_HOME);
+		model.addObject(CONTAINER_TITLE, user.getUserDetails().getName() + " " + user.getUserDetails().getSurname() + ADMINS_PANEL);
+		model.addObject(STUDENT, userDetailsService.findByUsername(username));
 		return model;
 	}
 
@@ -143,14 +144,14 @@ public class StudentController {
 	public String disEnrollToLessons(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-		model.addAttribute("containerTitle", "Choose the lessons that you would like to dis-enroll");
-		model.addAttribute("student", userService.findByUsername(username));
-		model.addAttribute("lessons", lessonService.findByEnrolledStudent(username));
+		model.addAttribute(CONTAINER_TITLE, "Choose the lessons that you would like to dis-enroll");
+		model.addAttribute(STUDENT, userService.findByUsername(username));
+		model.addAttribute(LESSONS, lessonService.findByEnrolledStudent(username));
 		return "student/disenrollToLessons";
 	}
 
 	@RequestMapping(value="/dis-enroll", method=RequestMethod.POST)
-	public ModelAndView storeDisenrollToLessons(@ModelAttribute("student") User student) {
+	public ModelAndView storeDisenrollToLessons(@ModelAttribute(STUDENT) User student) {
 		List<StudentEnrolledToLesson> studentEnrolledToLessonsList = new ArrayList<>();
 
 		List<Integer> checkedLessons = student.getCheckedLessons();
@@ -169,10 +170,10 @@ public class StudentController {
 		}
 		studentEnrolledToLessonService.delete(studentEnrolledToLessonsList);
 
-		ModelAndView model = new ModelAndView("student/home");
+		ModelAndView model = new ModelAndView(STUDENT_HOME);
 		UserDetails userDetails = userDetailsService.findByUsername(username);
-		model.addObject("containerTitle", userDetails.getName() + " " + userDetails.getSurname() + "'s admin panel");
-		model.addObject("student", userDetails);
+		model.addObject(CONTAINER_TITLE, userDetails.getName() + " " + userDetails.getSurname() + ADMINS_PANEL);
+		model.addObject(STUDENT, userDetails);
 		return model;
 	}
 
