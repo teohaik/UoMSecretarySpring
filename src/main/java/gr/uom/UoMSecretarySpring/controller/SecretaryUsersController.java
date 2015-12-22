@@ -109,7 +109,7 @@ public class SecretaryUsersController {
 	}
 
 	@RequestMapping(value="edit", method=RequestMethod.POST)
-	public ModelAndView storeEditedUserDetails(@ModelAttribute("userDetails") UserDetails userDetails, BindingResult bindingResult) {
+	public ModelAndView storeEditedUserDetails(@ModelAttribute("userDetails") UserDetails userDetails) {
 		userDetailsService.update(userDetails);
 		ModelAndView model = new ModelAndView("secretary/listUsersDetails");
 		model.addObject("usersDetails", userDetailsService.findAll());

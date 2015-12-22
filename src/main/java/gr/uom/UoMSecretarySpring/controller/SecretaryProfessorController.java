@@ -76,9 +76,9 @@ public class SecretaryProfessorController {
 	}
 
 	@RequestMapping(value="/assign/{username}", method=RequestMethod.POST)
-	public ModelAndView storeAssignedLessons(@PathVariable(value="username") String username, @ModelAttribute("professor") User professor, BindingResult bindingResult) {
+	public ModelAndView storeAssignedLessons(@PathVariable(value="username") String username, @ModelAttribute("professor") User professor) {
 
-		List<ProfessorTeachesLessons> professorTeachesLessonsList = new ArrayList<ProfessorTeachesLessons>();
+		List<ProfessorTeachesLessons> professorTeachesLessonsList = new ArrayList<>();
 		List<Integer> checkedLessons = professor.getCheckedLessons();
 		List<Lesson> lessons = lessonService.findByIds(checkedLessons);
 
@@ -110,9 +110,9 @@ public class SecretaryProfessorController {
 	}
 
 	@RequestMapping(value="/revoke/{username}", method=RequestMethod.POST)
-	public ModelAndView storeRevokedLessons(@PathVariable(value="username") String username, @ModelAttribute("professor") User professor, BindingResult bindingResult) {
+	public ModelAndView storeRevokedLessons(@PathVariable(value="username") String username, @ModelAttribute("professor") User professor) {
 
-		List<ProfessorTeachesLessons> professorTeachesLessonsList = new ArrayList<ProfessorTeachesLessons>();
+		List<ProfessorTeachesLessons> professorTeachesLessonsList = new ArrayList<>();
 		List<Integer> checkedLessons = professor.getCheckedLessons();
 		List<Lesson> lessons = lessonService.findByIds(checkedLessons);
 

@@ -68,13 +68,13 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails, BindingResult bindingResult) {
+	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails) {
 		ModelAndView modelAndView = new ModelAndView("myAccount");
 		userDetailsService.update(userDetails);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		userDetails = userDetailsService.findByUsername(username);
-		modelAndView.addObject("user", userDetails);
-		modelAndView.addObject("containerTitle", "Hello, " + userDetails.getName() + " " + userDetails.getSurname());
+		UserDetails updatedUserDetails = userDetailsService.findByUsername(username);
+		modelAndView.addObject("user", updatedUserDetails);
+		modelAndView.addObject("containerTitle", "Hello, " + updatedUserDetails.getName() + " " + updatedUserDetails.getSurname());
 		return modelAndView;
 	}
 
@@ -87,9 +87,8 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public ModelAndView storeChangePassword(@ModelAttribute("user") User user, BindingResult bindingResult) {
+	public ModelAndView storeChangePassword(@ModelAttribute("user") User user) {
 		ModelAndView modelAndView = new ModelAndView("myAccount");
-		System.out.println(user);
 		userService.update(user);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		modelAndView.addObject("user", userDetailsService.findByUsername(username));

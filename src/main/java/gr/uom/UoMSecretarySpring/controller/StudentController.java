@@ -93,13 +93,13 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails, BindingResult bindingResult) {
+	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails) {
 		ModelAndView modelAndView = new ModelAndView("student/home");
 		userDetailsService.update(userDetails);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		userDetails = userDetailsService.findByUsername(username);
-		modelAndView.addObject("containerTitle", userDetails.getName() + " " + userDetails.getSurname() + "'s admin panel");
-		modelAndView.addObject("student", userDetails);
+		UserDetails updatedUserDetails = userDetailsService.findByUsername(username);
+		modelAndView.addObject("containerTitle", updatedUserDetails.getName() + " " + updatedUserDetails.getSurname() + "'s admin panel");
+		modelAndView.addObject("student", updatedUserDetails);
 		return modelAndView;
 	}
 
@@ -113,8 +113,8 @@ public class StudentController {
 	}
 
 	@RequestMapping(value="/enroll", method=RequestMethod.POST)
-	public ModelAndView storeEnrollToLessons(@ModelAttribute("student") User student, BindingResult bindingResult) {
-		List<StudentEnrolledToLesson> studentEnrolledToLessonsList = new ArrayList<StudentEnrolledToLesson>();
+	public ModelAndView storeEnrollToLessons(@ModelAttribute("student") User student) {
+		List<StudentEnrolledToLesson> studentEnrolledToLessonsList = new ArrayList<>();
 
 		List<Integer> checkedLessons = student.getCheckedLessons();
 		List<Lesson> lessons = lessonService.findByIds(checkedLessons);
@@ -150,8 +150,8 @@ public class StudentController {
 	}
 
 	@RequestMapping(value="/dis-enroll", method=RequestMethod.POST)
-	public ModelAndView storeDisenrollToLessons(@ModelAttribute("student") User student, BindingResult bindingResult) {
-		List<StudentEnrolledToLesson> studentEnrolledToLessonsList = new ArrayList<StudentEnrolledToLesson>();
+	public ModelAndView storeDisenrollToLessons(@ModelAttribute("student") User student) {
+		List<StudentEnrolledToLesson> studentEnrolledToLessonsList = new ArrayList<>();
 
 		List<Integer> checkedLessons = student.getCheckedLessons();
 		List<Lesson> lessons = lessonService.findByIds(checkedLessons);

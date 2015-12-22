@@ -87,7 +87,7 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails, BindingResult bindingResult) {
+	public ModelAndView storeEdit(@ModelAttribute("userDetails") UserDetails userDetails) {
 		ModelAndView modelAndView = new ModelAndView("professor/home");
 		userDetailsService.update(userDetails);
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -112,7 +112,7 @@ public class ProfessorController {
 		UserDetails professorDetails = userDetailsService.findByUsername(username);
 
 		List<StudentEnrolledToLesson> students = studentEnrolledToLessonService.findByLessonId(lessonId);
-		if (students.size() > 0) {
+		if (!students.isEmpty()) {
 			StudentEnrolledToLessonWrapper studentEnrolledToLessonWrapper = new StudentEnrolledToLessonWrapper();
 			studentEnrolledToLessonWrapper.setStudentsEnrolledToLessonList(students);
 
@@ -128,7 +128,7 @@ public class ProfessorController {
 	@RequestMapping(value = "/setGrades", method = RequestMethod.POST)
 	public ModelAndView storeGrades(@ModelAttribute("studentEnrolledToLessonWrapper") StudentEnrolledToLessonWrapper studentEnrolledToLessonWrapper) {
 		List<StudentEnrolledToLesson> studentsEnrolledToLessonList = studentEnrolledToLessonWrapper.getStudentsEnrolledToLessonList();
-		List<StudentEnrolledToLesson> studentsEnrolledToLessonUpdateList = new ArrayList<StudentEnrolledToLesson>();
+		List<StudentEnrolledToLesson> studentsEnrolledToLessonUpdateList = new ArrayList<>();
 
 		for (StudentEnrolledToLesson studentEnrolledToLesson : studentsEnrolledToLessonList) {
 			Double grade = studentEnrolledToLesson.getGrade();

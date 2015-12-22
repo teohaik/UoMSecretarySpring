@@ -46,7 +46,7 @@ public class SecretaryLessonsController {
 	}
 
 	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public ModelAndView storeLesson(@ModelAttribute("lesson") Lesson lesson, BindingResult bindingResult) {
+	public ModelAndView storeLesson(@ModelAttribute("lesson") Lesson lesson) {
 		lessonService.insert(lesson);
 		ModelAndView model = new ModelAndView("secretary/listLessons");
 		model.addObject("lessons", lessonService.findAll());
@@ -60,7 +60,7 @@ public class SecretaryLessonsController {
 	}
 
 	@RequestMapping(value="edit", method=RequestMethod.POST)
-	public ModelAndView storeEditedLesson(@ModelAttribute("lesson") Lesson lesson, BindingResult bindingResult) {
+	public ModelAndView storeEditedLesson(@ModelAttribute("lesson") Lesson lesson) {
 		lessonService.update(lesson);
 		ModelAndView model = new ModelAndView("secretary/listLessons");
 		model.addObject("lessons", lessonService.findAll());

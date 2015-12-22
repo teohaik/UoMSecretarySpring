@@ -62,6 +62,7 @@ public class User implements Serializable {
 	private List<Integer> checkedLessons;
 	
     public User() {
+    	//Empty constructor for setting values
     }
 
     public User(String username) {

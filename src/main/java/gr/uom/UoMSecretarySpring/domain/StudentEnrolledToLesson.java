@@ -45,6 +45,7 @@ public class StudentEnrolledToLesson implements Serializable {
     private User user;
 
     public StudentEnrolledToLesson() {
+    	//Empty constructor for setting values
     }
 
     public StudentEnrolledToLesson(StudentEnrolledToLessonPK studentEnrolledToLessonPK) {

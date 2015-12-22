@@ -50,6 +50,7 @@ public class ProfessorTeachesLessons implements Serializable {
     private User user;
 
     public ProfessorTeachesLessons() {
+    	//Empty constructor for setting values
     }
 
     public ProfessorTeachesLessons(ProfessorTeachesLessonsPK professorTeachesLessonsPK) {

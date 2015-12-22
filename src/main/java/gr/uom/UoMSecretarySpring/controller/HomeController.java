@@ -33,21 +33,21 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/lessons", method = RequestMethod.GET)
-	public String listLessons(Locale locale, Model model) {
+	public String listLessons(Model model) {
 		model.addAttribute("containerTitle", "Lessons");
 		model.addAttribute("lessons", lessonService.findAll());
 		return "listLessons";
 	}
 
 	@RequestMapping(value = "/professors", method = RequestMethod.GET)
-	public String listProfessors(Locale locale, Model model) {
+	public String listProfessors(Model model) {
 		model.addAttribute("containerTitle", "Professors");
 		model.addAttribute("professors", userDetailsService.findByRole("ROLE_PROFESSOR"));
 		return "listProfessors";
 	}
 
 	@RequestMapping(value = "/secretaries", method = RequestMethod.GET)
-	public String listSecretaries(Locale locale, Model model) {
+	public String listSecretaries(Model model) {
 		model.addAttribute("containerTitle", "Secretaries");
 		model.addAttribute("secretaries", userDetailsService.findByRole("ROLE_SECRETARY"));
 		return "listSecretaries";

@@ -57,6 +57,7 @@ public class Lesson implements Serializable {
     private Collection<ProfessorTeachesLessons> professorTeachesLessonsCollection;
 
     public Lesson() {
+    	//Empty constructor for setting values
     }
 
     public Lesson(Integer id) {

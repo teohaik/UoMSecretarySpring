@@ -25,6 +25,7 @@ public class StudentEnrolledToLessonPK implements Serializable {
     private int lessonId;
 
     public StudentEnrolledToLessonPK() {
+    	//Empty constructor for setting values
     }
 
     public StudentEnrolledToLessonPK(String student, int lessonId) {

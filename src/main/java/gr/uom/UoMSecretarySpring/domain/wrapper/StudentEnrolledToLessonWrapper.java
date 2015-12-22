@@ -15,7 +15,9 @@ public class StudentEnrolledToLessonWrapper {
 
 	private List<StudentEnrolledToLesson> studentsEnrolledToLessonList;
 
-	public StudentEnrolledToLessonWrapper() {}
+	public StudentEnrolledToLessonWrapper() {
+		//Empty constructor for setting values
+	}
 
 	public List<StudentEnrolledToLesson> getStudentsEnrolledToLessonList() {
 		return studentsEnrolledToLessonList;
@@ -24,5 +26,5 @@ public class StudentEnrolledToLessonWrapper {
 	public void setStudentsEnrolledToLessonList(List<StudentEnrolledToLesson> studentsEnrolledToLessonList) {
 		this.studentsEnrolledToLessonList = studentsEnrolledToLessonList;
 	}
-	
+
 }

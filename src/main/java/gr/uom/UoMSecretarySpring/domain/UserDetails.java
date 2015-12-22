@@ -62,6 +62,7 @@ public class UserDetails implements Serializable {
     private User user;
 
     public UserDetails() {
+    	//Empty constructor for setting values
     }
 
     public UserDetails(String username) {
