@@ -1,4 +1,4 @@
-package gr.uom.UoMSecretarySpring.controller;
+package gr.uom.uomsecretaryspring.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import gr.uom.UoMSecretarySpring.domain.Lesson;
-import gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessons;
-import gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessonsPK;
-import gr.uom.UoMSecretarySpring.domain.User;
-import gr.uom.UoMSecretarySpring.domain.UserDetails;
-import gr.uom.UoMSecretarySpring.service.LessonService;
-import gr.uom.UoMSecretarySpring.service.ProfessorTeachesLessonsService;
-import gr.uom.UoMSecretarySpring.service.UserDetailsService;
-import gr.uom.UoMSecretarySpring.service.UserService;
+import gr.uom.uomsecretaryspring.domain.Lesson;
+import gr.uom.uomsecretaryspring.domain.ProfessorTeachesLessons;
+import gr.uom.uomsecretaryspring.domain.ProfessorTeachesLessonsPK;
+import gr.uom.uomsecretaryspring.domain.User;
+import gr.uom.uomsecretaryspring.domain.UserDetails;
+import gr.uom.uomsecretaryspring.service.LessonService;
+import gr.uom.uomsecretaryspring.service.ProfessorTeachesLessonsService;
+import gr.uom.uomsecretaryspring.service.UserDetailsService;
+import gr.uom.uomsecretaryspring.service.UserService;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

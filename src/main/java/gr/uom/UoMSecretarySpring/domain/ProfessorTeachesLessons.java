@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gr.uom.UoMSecretarySpring.domain;
+package gr.uom.uomsecretaryspring.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -120,7 +120,7 @@ public class ProfessorTeachesLessons implements Serializable {
 
     @Override
     public String toString() {
-        return "gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessons[ professorTeachesLessonsPK=" + professorTeachesLessonsPK + " ]";
+        return "gr.uom.uomsecretaryspring.domain.ProfessorTeachesLessons[ professorTeachesLessonsPK=" + professorTeachesLessonsPK + " ]";
     }
     
 }

@@ -1,9 +1,9 @@
 /**
  * 
  */
-package gr.uom.UoMSecretarySpring.service;
+package gr.uom.uomsecretaryspring.service;
 
-import gr.uom.UoMSecretarySpring.dao.LessonDao;
+import gr.uom.uomsecretaryspring.dao.LessonDao;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

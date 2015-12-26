@@ -1,4 +1,4 @@
-package gr.uom.UoMSecretarySpring.controller;
+package gr.uom.uomsecretaryspring.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import gr.uom.UoMSecretarySpring.service.LessonService;
-import gr.uom.UoMSecretarySpring.service.UserDetailsService;
+import gr.uom.uomsecretaryspring.service.LessonService;
+import gr.uom.uomsecretaryspring.service.UserDetailsService;
 /**
  * Handles requests for the application home page.
  */

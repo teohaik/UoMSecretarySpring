@@ -1,13 +1,13 @@
-package gr.uom.UoMSecretarySpring.service.impl;
+package gr.uom.uomsecretaryspring.service.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import gr.uom.UoMSecretarySpring.dao.LessonDao;
-import gr.uom.UoMSecretarySpring.domain.Lesson;
-import gr.uom.UoMSecretarySpring.service.LessonService;
+import gr.uom.uomsecretaryspring.dao.LessonDao;
+import gr.uom.uomsecretaryspring.domain.Lesson;
+import gr.uom.uomsecretaryspring.service.LessonService;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

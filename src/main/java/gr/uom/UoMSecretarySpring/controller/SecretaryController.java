@@ -1,4 +1,4 @@
-package gr.uom.UoMSecretarySpring.controller;
+package gr.uom.uomsecretaryspring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import gr.uom.UoMSecretarySpring.service.UserDetailsService;
+import gr.uom.uomsecretaryspring.service.UserDetailsService;
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>
  *

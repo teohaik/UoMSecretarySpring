@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gr.uom.UoMSecretarySpring.dao.impl;
+package gr.uom.uomsecretaryspring.dao.impl;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import gr.uom.UoMSecretarySpring.dao.StudentEnrolledToLessonDao;
-import gr.uom.UoMSecretarySpring.domain.StudentEnrolledToLesson;
+import gr.uom.uomsecretaryspring.dao.StudentEnrolledToLessonDao;
+import gr.uom.uomsecretaryspring.domain.StudentEnrolledToLesson;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="gr.uom.UoMSecretarySpring" />
+	<context:component-scan base-package="gr.uom.uomsecretaryspring" />
 	
 	<!-- imports -->
 	<beans:import resource="servlet-controller.xml" />

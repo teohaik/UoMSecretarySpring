@@ -1,11 +1,11 @@
 /**
  * 
  */
-package gr.uom.UoMSecretarySpring.dao;
+package gr.uom.uomsecretaryspring.dao;
 
 import java.util.List;
 
-import gr.uom.UoMSecretarySpring.domain.Lesson;
+import gr.uom.uomsecretaryspring.domain.Lesson;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

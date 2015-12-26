@@ -1,16 +1,16 @@
 /**
  * 
  */
-package gr.uom.UoMSecretarySpring.service.impl;
+package gr.uom.uomsecretaryspring.service.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import gr.uom.UoMSecretarySpring.dao.StudentEnrolledToLessonDao;
-import gr.uom.UoMSecretarySpring.domain.StudentEnrolledToLesson;
-import gr.uom.UoMSecretarySpring.service.StudentEnrolledToLessonService;
+import gr.uom.uomsecretaryspring.dao.StudentEnrolledToLessonDao;
+import gr.uom.uomsecretaryspring.domain.StudentEnrolledToLesson;
+import gr.uom.uomsecretaryspring.service.StudentEnrolledToLessonService;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

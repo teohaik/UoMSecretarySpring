@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gr.uom.UoMSecretarySpring.dao.impl;
+package gr.uom.uomsecretaryspring.dao.impl;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import gr.uom.UoMSecretarySpring.dao.LessonDao;
-import gr.uom.UoMSecretarySpring.domain.Lesson;
+import gr.uom.uomsecretaryspring.dao.LessonDao;
+import gr.uom.uomsecretaryspring.domain.Lesson;
 
 /**
  * @author Georgios Digkas <mai153@uom.edu.gr>

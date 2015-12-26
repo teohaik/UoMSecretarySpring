@@ -21,12 +21,12 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>gr.uom.UoMSecretarySpring.domain.Lesson</value>
-				<value>gr.uom.UoMSecretarySpring.domain.User</value>
-				<value>gr.uom.UoMSecretarySpring.domain.UserDetails</value>
-				<value>gr.uom.UoMSecretarySpring.domain.ProfessorTeachesLessons
+				<value>gr.uom.uomsecretaryspring.domain.Lesson</value>
+				<value>gr.uom.uomsecretaryspring.domain.User</value>
+				<value>gr.uom.uomsecretaryspring.domain.UserDetails</value>
+				<value>gr.uom.uomsecretaryspring.domain.ProfessorTeachesLessons
 				</value>
-				<value>gr.uom.UoMSecretarySpring.domain.StudentEnrolledToLesson
+				<value>gr.uom.uomsecretaryspring.domain.StudentEnrolledToLesson
 				</value>
 			</list>
 		</property>
