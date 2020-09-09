@@ -14,7 +14,7 @@
 		<org.springframework.security-version>4.0.3.RELEASE</org.springframework.security-version>
 		<org.aspectj-version>1.7.4</org.aspectj-version>
 		<org.slf4j-version>1.7.5</org.slf4j-version>
-		<org.hibernate-version>5.0.3.Final</org.hibernate-version>
+		<org.hibernate-version>5.3.18.Final</org.hibernate-version>
 		<mysql-verion>5.1.37</mysql-verion>
 		<commons-dbcp-verion>1.4</commons-dbcp-verion>
 	</properties>
